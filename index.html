@@ -24,6 +24,7 @@
             loader.load( 'BallMini.gltf', function ( gltf ) {
 
                 scene.add( gltf.scene );
+                camera.position.z = 5;
                 animate();
 
             }, undefined, function ( error ) {
