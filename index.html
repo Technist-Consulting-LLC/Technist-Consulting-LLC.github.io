@@ -46,8 +46,8 @@
         renderer.setSize(window.innerWidth,window.innerHeight);
         document.body.appendChild(renderer.domElement);
         
-//         controls = new THREE.OrbitControls(camera, renderer.domElement);
-//         controls.addEventListener('change', renderer);
+        controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.addEventListener('change', renderer);
 
         let loader = new THREE.GLTFLoader();
         loader.load('BallMini.gltf', function(gltf){
@@ -60,6 +60,7 @@
       function animate() {
         renderer.render(scene,camera);
         requestAnimationFrame(animate);
+        controls.update();
       }
       
     </script>
