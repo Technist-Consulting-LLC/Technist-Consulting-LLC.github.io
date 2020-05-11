@@ -1,71 +1,21 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset=UTF-8 />
-    
-    <script src="three.min.js" type="text/javascript"></script>
-    <script src="GLTFLoader.js" type="text/javascript"></script>
-    <script src="OrbitControls.js" type="text/javascript"></script>
-    <script>
-      let scene, camera, renderer;
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>glTF Sample Viewer</title>
 
-      window.addEventListener("load", init, false);
-      
-      function init() {
+    <meta name="author" content="Khronos Group Inc.">
+    <meta name="description" content="The official glTF sample viewer">
+    <meta name="keywords" content="glTF, WebGL, Sample, Viewer, PBR">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        scene = new THREE.Scene();
-        scene.background = new THREE.Color(0xdddddd);
+    <script src="gltf-reference-viewer.umd.js"></script>
+</head>
 
-        camera = new THREE.PerspectiveCamera(40,window.innerWidth/window.innerHeight,1,5000);
-        camera.rotation.y = 45/180*Math.PI;
-        camera.position.x = 800;
-        camera.position.y = 100;
-        camera.position.z = 1000;
-
-        hlight = new THREE.AmbientLight (0x404040,100);
-        scene.add(hlight);
-
-//         directionalLight = new THREE.DirectionalLight(0xffffff,100);
-//         directionalLight.position.set(0,1,0);
-//         directionalLight.castShadow = true;
-//         scene.add(directionalLight);
-//         light = new THREE.PointLight(0xc4c4c4,10);
-//         light.position.set(0,300,500);
-//         scene.add(light);
-//         light2 = new THREE.PointLight(0xc4c4c4,10);
-//         light2.position.set(500,100,0);
-//         scene.add(light2);
-//         light3 = new THREE.PointLight(0xc4c4c4,10);
-//         light3.position.set(0,100,-500);
-//         scene.add(light3);
-//         light4 = new THREE.PointLight(0xc4c4c4,10);
-//         light4.position.set(-500,300,500);
-//         scene.add(light4);
-
-        renderer = new THREE.WebGLRenderer({antialias:true});
-        renderer.setSize(window.innerWidth,window.innerHeight);
-        document.body.appendChild(renderer.domElement);
-        
-        controls = new THREE.OrbitControls(camera, renderer.domElement);
-        controls.addEventListener('change', renderer);
-
-        let loader = new THREE.GLTFLoader();
-        loader.load('BallMini.gltf', function(gltf){
-          ball = gltf.scene.children[0];
-          ball.scale.set(0.75,0.75,0.75);
-          scene.add(gltf.scene);
-          animate();
-        });
-      }
-      function animate() {
-        renderer.render(scene,camera);
-        requestAnimationFrame(animate);
-        controls.update();
-      }
-      
-    </script>
-  </head>
-  <body>
-    
-  </body>
+<!-- Just create a rendering canvas like below and call gltf_rv! -->
+<body onload="viewer = gltf_rv.gltf_rv('canvas', , 'Courtyard of the Doge\'s palace', false, undefined, '', '');">
+    <div id="gltf-rv-model-spinner"> </div>
+    <canvas id="canvas">No Canvas!</canvas>
+</body>
 </html>
