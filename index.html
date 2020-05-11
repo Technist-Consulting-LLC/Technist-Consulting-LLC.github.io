@@ -11,10 +11,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <script src="gltf-reference-viewer.umd.js"></script>
+    
+    <script>
+        function doStuff() {
+            viewer = gltf_rv.gltf_rv('canvas', '', 'Courtyard of the Doge\'s palace', false, undefined, '', '');
+            
+            viewer.loadFromPath("./BallMini.gltf");
+        }
+    </script>
 </head>
 
 <!-- Just create a rendering canvas like below and call gltf_rv! -->
-<body onload="viewer = gltf_rv.gltf_rv('canvas', '', 'Courtyard of the Doge\'s palace', false, undefined, '', '');">
+<body onload="doStuff();">
     <div id="gltf-rv-model-spinner"> </div>
     <canvas id="canvas">No Canvas!</canvas>
 </body>
