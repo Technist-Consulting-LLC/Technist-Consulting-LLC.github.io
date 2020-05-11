@@ -24,12 +24,18 @@
             loader.load( 'BallMini.gltf', function ( gltf ) {
 
                 scene.add( gltf.scene );
+                animate();
 
             }, undefined, function ( error ) {
 
                 console.error( error );
 
             } );
+            
+            function animate() {
+                requestAnimationFrame( animate );
+                renderer.render( scene, camera );
+            }
         }
     </script>
 </head>
