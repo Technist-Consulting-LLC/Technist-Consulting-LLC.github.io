@@ -5,25 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>glTF Sample Viewer</title>
 
-    <meta name="author" content="Khronos Group Inc.">
-    <meta name="description" content="The official glTF sample viewer">
-    <meta name="keywords" content="glTF, WebGL, Sample, Viewer, PBR">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="gltf-reference-viewer.umd.js"></script>
+    <script src="three.min.js" type="text/javascript"></script>
+    <script src="GLTFLoader.js" type="text/javascript"></script>
     
     <script>
         function doStuff() {
-            viewer = gltf_rv.gltf_rv('canvas', '', 'Courtyard of the Doge\'s palace', false, undefined, '', '');
+            var scene = new THREE.Scene();
+            var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+            var renderer = new THREE.WebGLRenderer();
+            renderer.setSize( window.innerWidth, window.innerHeight );
+            document.body.appendChild( renderer.domElement );
             
-            viewer.loadFromPath("/BallMini.gltf");
+            var loader = new THREE.GLTFLoader();
+
+            loader.load( 'BallMini.gltf', function ( gltf ) {
+
+                scene.add( gltf.scene );
+
+            }, undefined, function ( error ) {
+
+                console.error( error );
+
+            } );
         }
     </script>
 </head>
 
 <!-- Just create a rendering canvas like below and call gltf_rv! -->
 <body onload="doStuff();">
-    <div id="gltf-rv-model-spinner"> </div>
-    <canvas id="canvas">No Canvas!</canvas>
+    
 </body>
 </html>
