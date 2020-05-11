@@ -9,6 +9,8 @@
     <script>
       let scene, camera, renderer;
 
+      window.addEventListener("load", init, false);
+      
       function init() {
 
         scene = new THREE.Scene();
@@ -62,7 +64,7 @@
       
     </script>
   </head>
-  <body onload="init();">
+  <body>
     
   </body>
 </html>
